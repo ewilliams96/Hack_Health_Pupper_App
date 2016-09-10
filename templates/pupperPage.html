@@ -43,12 +43,29 @@
 
         <div class="row">
            <div class = "col-md-12 text-center">
+                <img id="pixel" src="../static/pixel-ani-dog.gif">
                 <button onclick="upPup()" id="upPup"> <b>Up-Pup</b> </button>
 
 
                  <button onclick="getImage()" > <b>Next Image</b> </button>
             </div>
 
+        </div>
+
+        <div class="row">
+            <div class="text-center">
+                <button onclick="showTop()" id="top"> <b>Most Popular Tags via Clarifai</b> </button>
+
+            </div>
+        </div>
+        <br>
+     
+        <div class="row">
+            <b>
+            <ol class="text-center col-md-12 list-unstyled"  id="meme">
+            </ol>
+            </b>
+      
         </div>
     </div>
 </body>
@@ -89,6 +106,15 @@
         border-radius: 50px;
         background-color:#D8F793;
     }
+    #pixel{
+        visibility: hidden;
+    }
+    li{
+        font-family: 'Courier New';
+        font-size: '2.5em';
+        /*margin-top:3%;*/
+        
+    }
 
 
 </style>
@@ -96,17 +122,42 @@
 <script>
 
     var src =  "{{ url_for('static', filename=sound )}}";
+    var description = "{{description}}";
+    var values = "{{values}}";
+    var top_words = description.split(" ");
+    var top_vals = values.split(" ");
+    for(var i = 0; i < top_words.length-1; i++){
+        var node = document.createElement("LI");
+        var text = document.createTextNode(top_words[i] + " " + top_vals[i]);
+        node.appendChild(text);
+        document.getElementById('meme').appendChild(node);
+    }
 
     var audio = new Audio( src);
     audio.play();
     function upPup(){
         document.getElementById("upPup").disabled = true;
         document.getElementById("upPup").style.backgroundColor="lightgreen";
+        document.getElementById('pixel').style.visibility = "visible";
     }
-    function getImage(){
 
-      window.location.href =  "../";
+    function getImage(){    
+        if(document.getElementById("upPup").disabled){
+            window.location.href =  "../uppup";
+            console.log("disabled");
+        }else{
+            window.location.href =  "../";
+            console.log("not disabled");
+        }
+        
     }
+
+    function showTop(){
+        window.location.href =  "../toptags";
+        
+        
+    }
+
 
 </script>
 
