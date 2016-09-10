@@ -77,7 +77,7 @@ class DoggoAPICall():
         if self.check_pupper() == True:
             dog_type = dog_types[0:2][random.randint(0,1)]
         else:
-            dog_type = dog_types[random.randint(0, len(dog_types))]
+            dog_type = dog_types[random.randint(0, len(dog_types) - 1)]
         
         bork_message = dog_modifier + " " + dog_type + " " + bork_message
         return bork_message
