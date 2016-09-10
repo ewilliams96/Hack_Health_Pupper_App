@@ -11,7 +11,7 @@ imgurUrlPattern = re.compile(r'(http://i.imgur.com/(.*))(\?.*)?')
 
 user_agent = "pupper_finder"
 reddit = praw.Reddit(user_agent=user_agent)
-MIN_SCORE = 20 # min score for pup pictures
+MIN_SCORE = 10 # min score for pup pictures
 subreddit = "rarepuppers"
 
 
@@ -21,13 +21,15 @@ def yielding(ls):
 
 def scrape_pic():
 
-    submissions = reddit.get_subreddit(subreddit).get_hot(limit=200)
+    submissions = reddit.get_subreddit(subreddit).get_hot(limit=500)
     #now let's parse through what we scraped and decide what we return
 
     temp_list = list(yielding(submissions))
-    starting_index = random.randint(0,150)
+    starting_index = random.randint(0,400)
 
     for submission in temp_list[starting_index:]:
+        if "gifv" in submission.url:
+            continue
         if submission.score < MIN_SCORE:
             continue
        #now we need to get this image and download, and then serve it
