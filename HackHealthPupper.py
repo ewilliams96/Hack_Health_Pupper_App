@@ -65,13 +65,15 @@ setting up flask server stuff
 
 app = Flask(__name__)
 
+sounds = ["Dog.mp3", "Puppy.mp3", "Puppy2.mp3", "Dog2.mp3"]
 
 
 
 @app.route('/')
 def hello_world():
     doggo_object = scrape_pic(old_doggo)
-    return render_template('pupperPage.html', image_url=doggo_object.url, doggo_message=doggo_object.bork_message())
+
+    return render_template('pupperPage.html', sound=sounds[random.randint(0,3)],image_url=doggo_object.url, doggo_message=doggo_object.bork_message())
 
 if __name__ == '__main__':
     app.run(debug=True)
