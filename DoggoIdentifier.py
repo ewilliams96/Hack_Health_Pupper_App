@@ -15,7 +15,7 @@ def clarifai_test():
     classes = result.get('results')[0].get('result').get('tag').get('classes')
     print(classes)
 
-clarifai_test()
+
 class DoggoAPICall():
     # constructor for class to make API call
     # By default, web = True, so provide an online URL of an image for verification
@@ -59,23 +59,27 @@ class DoggoAPICall():
 
     # Use results from clarifai API to create more relevant description of image
     def bork_message(self):
-        dog_types = ['pupper', 'puppo', 'woofer', 'doggo', 'dogger']
-        bork_message = 'does a bork!'
+        actions = ['bark', 'bork', 'woof', 'nom', 'noms', 'stretch', 'yawn', 'sleep', 'roll',
+        'nuzzle', 'roll', 'lick']
+        adverbs = ['comforting', 'suspiciously', 'shy', 'smart', 'mischieveous', 'endearing', 'silly']
+
+        bork_message = 'does a ' + adverbs[random.randint(0,len(adverbs) - 1)] + " " + actions[random.randint(0, len(actions) - 1)] + '!'
 
         # choose modifier / adjective
         modifier_index = random.randint(0, len(self.get_classes()) - 1)
         dog_modifier = self.get_classes()[modifier_index]
-        while dog_modifier == "puppy" or dog_modifier == "dog":
+        while dog_modifier == 'puppy' or dog_modifier == 'dog':
             modifier_index = random.randint(0, len(self.get_classes()) - 1)
             dog_modifier = self.get_classes()[modifier_index]
         
         #choose type of dog_modifier
+        dog_types = ['pupper', 'puppo', 'woofer', 'doggo', 'dogger']
         if self.check_pupper() == True:
-            dog_type = dog_types[0:1][random.randint(0,1)]
+            dog_type = dog_types[0:2][random.randint(0,1)]
         else:
             dog_type = dog_types[random.randint(0, len(dog_types))]
         
-        bork_message = dog_modifier+ " " + dog_type + " " + bork_message
+        bork_message = dog_modifier + " " + dog_type + " " + bork_message
         return bork_message
 
 # test driver

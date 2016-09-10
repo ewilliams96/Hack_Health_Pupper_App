@@ -1,6 +1,7 @@
 import praw, re, requests, os, glob, sys
 from flask import Flask, request, render_template
 import random as random
+from DoggoIdentifier import DoggoAPICall
 '''
 setting up a reddit user for scraping pictures
 '''
@@ -21,11 +22,11 @@ def yielding(ls):
 
 def scrape_pic():
 
-    submissions = reddit.get_subreddit(subreddit).get_new(limit=1000)
+    submissions = reddit.get_subreddit(subreddit).get_new(limit=100)
     #now let's parse through what we scraped and decide what we return
 
     temp_list = list(yielding(submissions))
-    starting_index = random.randint(0,990)
+    starting_index = random.randint(0,90)
 
     for submission in temp_list[starting_index:]:
         if "gifv" in submission.url:
@@ -34,11 +35,16 @@ def scrape_pic():
             continue
        #now we need to get this image and download, and then serve it
         if "http://i.imgur.com/" in submission.url:
-            pre_worked_url = imgurUrlPattern.search(submission.url)
+            url = imgurUrlPattern.search(submission.url).group(1)
+            # 
+            dac = DoggoAPICall(url)
 
-            return pre_worked_url
+            if dac.verify_dog():
+                return url
+            else:
+                print("not a doggo", url)
             #checks for the case with a '?' in the filename
-            break
+            
     return None
 
 
@@ -64,19 +70,13 @@ setting up flask server stuff
 app = Flask(__name__)
 image_url = scrape_pic()
 
-print(image_url.group(1))
+print(image_url)
 
 @app.route('/')
 def hello_world():
     image_url = scrape_pic()
 
-    print(image_url.group(1))
-    return render_template('pupperPage.html', image_url=image_url.group(1))
-
-@app.route('/get_image')
-def get_image():
-    image_url = scrape_pic()
-    return render_template('pupperPage.html',image_url=image_url.group(1))
+    return render_template('pupperPage.html', image_url=image_url)
 
 if __name__ == '__main__':
     app.run(debug=True)
