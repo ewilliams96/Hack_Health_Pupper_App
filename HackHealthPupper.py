@@ -81,6 +81,8 @@ def hello_world():
 def up_pup():
     classes = current_doggo.get_classes()
     for c in classes:
+        if c == 'no person':
+            continue
         if c in top_tags_dict:
             top_tags_dict[c] += 1
         else:
