@@ -40,7 +40,7 @@ def scrape_pic():
             dac = DoggoAPICall(url)
 
             if dac.verify_dog():
-                return url
+                return dac
             else:
                 print("not a doggo", url)
             #checks for the case with a '?' in the filename
@@ -68,7 +68,7 @@ setting up flask server stuff
 '''
 
 app = Flask(__name__)
-image_url = scrape_pic()
+doggo_object = scrape_pic()
 
 print(image_url)
 
@@ -76,7 +76,7 @@ print(image_url)
 def hello_world():
     image_url = scrape_pic()
 
-    return render_template('pupperPage.html', image_url=image_url)
+    return render_template('pupperPage.html', image_url=doggo_object.url)
 
 if __name__ == '__main__':
     app.run(debug=True)
