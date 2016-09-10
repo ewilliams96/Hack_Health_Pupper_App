@@ -11,7 +11,7 @@ imgurUrlPattern = re.compile(r'(http://i.imgur.com/(.*))(\?.*)?')
 
 user_agent = "pupper_finder"
 reddit = praw.Reddit(user_agent=user_agent)
-MIN_SCORE = 10 # min score for pup pictures
+MIN_SCORE = 1 # min score for pup pictures
 subreddit = "rarepuppers"
 
 
@@ -21,11 +21,11 @@ def yielding(ls):
 
 def scrape_pic():
 
-    submissions = reddit.get_subreddit(subreddit).get_hot(limit=500)
+    submissions = reddit.get_subreddit(subreddit).get_new(limit=1000)
     #now let's parse through what we scraped and decide what we return
 
     temp_list = list(yielding(submissions))
-    starting_index = random.randint(0,400)
+    starting_index = random.randint(0,990)
 
     for submission in temp_list[starting_index:]:
         if "gifv" in submission.url:
@@ -62,7 +62,9 @@ setting up flask server stuff
 '''
 
 app = Flask(__name__)
+image_url = scrape_pic()
 
+print(image_url.group(1))
 
 @app.route('/')
 def hello_world():
@@ -78,5 +80,6 @@ def get_image():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
