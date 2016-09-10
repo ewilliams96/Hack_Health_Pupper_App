@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d9b71b1b-6cfb-4485-b3d6-422cffcd2513" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HackHealthPupper.py" afterPath="$PROJECT_DIR$/HackHealthPupper.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pupperPage.html" afterPath="$PROJECT_DIR$/templates/pupperPage.html" />
     </list>
     <ignored path="hack_health_pupper_webapp.iws" />
@@ -40,21 +39,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pupperPage.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pupperPage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/pupperPage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
+            <state relative-caret-position="411">
+              <caret line="103" column="73" selection-start-line="103" selection-start-column="73" selection-end-line="103" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HackHealthPupper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HackHealthPupper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HackHealthPupper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="75" column="78" selection-start-line="75" selection-start-column="78" selection-end-line="75" selection-end-column="78" />
+            <state relative-caret-position="-300">
+              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -82,8 +81,8 @@
         <option value="$PROJECT_DIR$/HackHealthPupper.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/DoggoIdentifier.py" />
-        <option value="$PROJECT_DIR$/templates/pupperPage.html" />
         <option value="$PROJECT_DIR$/HackHealthPupper.py" />
+        <option value="$PROJECT_DIR$/templates/pupperPage.html" />
       </list>
     </option>
   </component>
@@ -509,18 +508,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/pupperPage.html">
+    <entry file="file://$PROJECT_DIR$/HackHealthPupper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="83" column="25" selection-start-line="83" selection-start-column="25" selection-end-line="83" selection-end-column="25" />
+        <state relative-caret-position="-300">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HackHealthPupper.py">
+    <entry file="file://$PROJECT_DIR$/templates/pupperPage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="75" column="78" selection-start-line="75" selection-start-column="78" selection-end-line="75" selection-end-column="78" />
+        <state relative-caret-position="411">
+          <caret line="103" column="73" selection-start-line="103" selection-start-column="73" selection-end-line="103" selection-end-column="73" />
           <folding />
         </state>
       </provider>
