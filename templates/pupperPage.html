@@ -94,6 +94,9 @@
 </style>
 
 <script>
+    var sounds = ["Dog.mp3", "Puppy.mp3","Puppy2.mp3","Dog2.mp3"];
+    var audio = new Audio('static/'+sounds[Math.random(0,3)]);
+    audio.play();
     function upPup(){
 
     }
