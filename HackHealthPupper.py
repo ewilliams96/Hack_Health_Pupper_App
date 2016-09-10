@@ -33,12 +33,13 @@ def scrape_pic():
        #now we need to get this image and download, and then serve it
         if "http://i.imgur.com/" in submission.url:
             pre_worked_url = imgurUrlPattern.search(submission.url)
-            print(pre_worked_url)
+
+            return pre_worked_url
             #checks for the case with a '?' in the filename
             break
     return None
 
-scrape_pic()
+
 '''
 setting up machine learning stuff on pictures
 '''
@@ -60,10 +61,18 @@ setting up flask server stuff
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello_world():
-    return render_template('pupperPage.html')
+    image_url = scrape_pic()
 
+    print(image_url.group(1))
+    return render_template('pupperPage.html', image_url=image_url.group(1))
+
+@app.route('/get_image')
+def get_image():
+    image_url = scrape_pic()
+    return render_template('pupperPage.html',image_url=image_url.group(1))
 
 if __name__ == '__main__':
     app.run(debug=True)
