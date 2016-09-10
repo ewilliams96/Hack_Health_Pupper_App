@@ -2,6 +2,7 @@ from clarifai.client import ClarifaiApi
 from config import clientID, clientSecret
 import random
 
+
 clarifai_api = ClarifaiApi(clientID, clientSecret)
 # test clarifai-python
 
@@ -36,14 +37,9 @@ class DoggoAPICall():
     # Use clarifai API to verify if an image from a url is actually a dog
     # returns bool
     def verify_dog(self):
+        valid_dogs = ['dog', 'puppy', 'wolf', 'canine']
         for tag in self.get_classes():
-            if tag == 'dog':
-                return True
-            elif tag == 'puppy':
-                return True
-            elif tag == 'wolf':
-                return True
-            elif tag == 'canine':
+            if tag in valid_dogs:
                 return True
         return False
 
@@ -62,12 +58,13 @@ class DoggoAPICall():
         actions = ['bark', 'bork', 'woof', 'nom', 'noms', 'stretch', 'yawn', 'sleep', 'roll',
         'nuzzle', 'roll', 'lick']
         adverbs = ['comforting', 'suspiciously', 'shy', 'smart', 'mischieveous', 'endearing', 'silly']
-
+        adverbs = adverbs + self.get_classes()
         bork_message = 'does a ' + adverbs[random.randint(0,len(adverbs) - 1)] + " " + actions[random.randint(0, len(actions) - 1)] + '!'
 
         # choose modifier / adjective
         modifier_index = random.randint(0, len(self.get_classes()) - 1)
         dog_modifier = self.get_classes()[modifier_index]
+
         while dog_modifier == 'puppy' or dog_modifier == 'dog':
             modifier_index = random.randint(0, len(self.get_classes()) - 1)
             dog_modifier = self.get_classes()[modifier_index]
@@ -81,6 +78,17 @@ class DoggoAPICall():
         
         bork_message = dog_modifier + " " + dog_type + " " + bork_message
         return bork_message
+
+# get nouns and adjectives from list
+'''
+def filter_words(word_list):
+    filter_list = []
+    types = ['n', 'v']
+    for word in word_list:
+        if wn.synsets(word)[0].pos() in types:
+            filter_list.append(word)
+    return filter_list
+    '''
 
 # test driver
 def main():
