@@ -22,11 +22,11 @@ def yielding(ls):
 
 def scrape_pic():
 
-    submissions = reddit.get_subreddit(subreddit).get_new(limit=100)
+    submissions = reddit.get_subreddit(subreddit).get_new(limit=300)
     #now let's parse through what we scraped and decide what we return
 
     temp_list = list(yielding(submissions))
-    starting_index = random.randint(0,90)
+    starting_index = random.randint(0,280)
 
     for submission in temp_list[starting_index:]:
         if "gifv" in submission.url:
@@ -68,15 +68,14 @@ setting up flask server stuff
 '''
 
 app = Flask(__name__)
-doggo_object = scrape_pic()
 
-print(image_url)
+
+
 
 @app.route('/')
 def hello_world():
-    image_url = scrape_pic()
-
-    return render_template('pupperPage.html', image_url=doggo_object.url)
+    doggo_object = scrape_pic()
+    return render_template('pupperPage.html', image_url=doggo_object.url, doggo_message=doggo_object.bork_message())
 
 if __name__ == '__main__':
     app.run(debug=True)
