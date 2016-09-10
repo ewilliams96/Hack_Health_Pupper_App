@@ -15,6 +15,7 @@ reddit = praw.Reddit(user_agent=user_agent)
 MIN_SCORE = 1 # min score for pup pictures
 subreddit = "rarepuppers"
 old_doggo = "string"
+image_history = {}
 
 def yielding(ls):
     for i in ls:
@@ -36,19 +37,23 @@ def scrape_pic(old_doggo):
        #now we need to get this image and download, and then serve it
         if "http://i.imgur.com/" in submission.url:
             url = imgurUrlPattern.search(submission.url).group(1)
-            # 
             dac = DoggoAPICall(url)
-            if(dac.url == old_doggo):
-
-                continue
             if dac.verify_dog():
-
-                old_doggo = dac.url
-                return dac
+                del_keys = []
+                for key in image_history.keys():
+                    image_history[key] -= 1
+                    if image_history[key] == 0:
+                        del_keys.append(key)
+                for key in del_keys:
+                    del image_history[key]
+                   
+                if dac.url not in image_history:
+                    image_history[dac.url] = 10 # minimum occurrences before next appearance
+                    return dac
+               
             else:
                 print("not a doggo", url)
-
-            
+       
     return None
 
 
